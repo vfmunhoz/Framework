@@ -1,0 +1,84 @@
+#!/bin/bash
+
+if [[ "$1" == "linux" ]]
+then
+	echo "Compiling for ARK's Linux laptop"
+	#SRCDIR1=/home/ark/public_html/pj/lib
+	SRCDIR1=/home/ark/books/bpp/pj/lib
+	export CLASSPATH=${SRCDIR1}
+
+elif [[ "$1" == "solaris" ]]
+then
+	echo "Compiling for ARK's Solaris account"
+	SRCDIR1=/home/fac/ark/public_html/pj/lib
+	export CLASSPATH=${SRCDIR1}
+
+else
+	echo "Usage: compile [linux|solaris]"
+	exit 1
+
+fi
+
+echo "Changing directories..."
+cd $SRCDIR1
+
+echo "Removing Java class files..."
+find . -name '*.class' -exec rm '{}' ';'
+
+echo "Compiling Java source files..."
+javac \
+*.java \
+edu/rit/clu/antimatter/*.java \
+edu/rit/clu/fractal/*.java \
+edu/rit/clu/heat/*.java \
+edu/rit/clu/keysearch/*.java \
+edu/rit/clu/monte/*.java \
+edu/rit/clu/network/*.java \
+edu/rit/clu/timing/*.java \
+edu/rit/color/*.java \
+edu/rit/compbio/phyl/*.java \
+edu/rit/compbio/phyl/test/*.java \
+edu/rit/compbio/seq/*.java \
+edu/rit/compbio/seq/test/*.java \
+edu/rit/crypto/*.java \
+edu/rit/crypto/blockcipher/*.java \
+edu/rit/draw/*.java \
+edu/rit/draw/item/*.java \
+edu/rit/draw/item/test/*.java \
+edu/rit/http/*.java \
+edu/rit/hyb/antimatter/*.java \
+edu/rit/hyb/fractal/*.java \
+edu/rit/hyb/keysearch/*.java \
+edu/rit/hyb/monte/*.java \
+edu/rit/hyb/network/*.java \
+edu/rit/hyb/prime/*.java \
+edu/rit/io/*.java \
+edu/rit/image/*.java \
+edu/rit/image/test/*.java \
+edu/rit/mp/*.java \
+edu/rit/mp/buf/*.java \
+edu/rit/mp/test/*.java \
+edu/rit/mri/*.java \
+edu/rit/mri/test/*.java \
+edu/rit/numeric/*.java \
+edu/rit/numeric/plot/*.java \
+edu/rit/numeric/plot/impl/*.java \
+edu/rit/pj/*.java \
+edu/rit/pj/cluster/*.java \
+edu/rit/pj/cluster/test/*.java \
+edu/rit/pj/io/*.java \
+edu/rit/pj/job/*.java \
+edu/rit/pj/job/test/*.java \
+edu/rit/pj/reduction/*.java \
+edu/rit/pj/replica/*.java \
+edu/rit/pj/test/*.java \
+edu/rit/smp/ca/*.java \
+edu/rit/smp/fractal/*.java \
+edu/rit/smp/keysearch/*.java \
+edu/rit/smp/monte/*.java \
+edu/rit/smp/network/*.java \
+edu/rit/swing/*.java \
+edu/rit/util/*.java \
+edu/rit/vector/*.java \
+
+

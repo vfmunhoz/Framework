@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [[ "$1" == "" ]]
+then
+	echo "Usage: genshtml dd-mmm-yyyy"
+	exit 1
+fi
+
+#TOPDIR=/home/ark/public_html/pj
+TOPDIR=/home/ark/books/bpp/pj
+SRCDIR=${TOPDIR}/lib
+
+echo "Removing old shtml files..."
+find $SRCDIR -name '*.shtml' -exec rm '{}' ';'
+
+echo "Generating new shtml files..."
+for JAVAFILE in `find $SRCDIR -name '*.java'`
+do
+	SHTMLFILE=`echo $JAVAFILE | sed -e "s/\.java/\.shtml/"`
+	CLASS=`echo $JAVAFILE | sed -e "s/.*\///" -e "s/\.java//"`
+	sed -e "s/CLASS/$CLASS/" -e "s/01-Jan-2007/$1/" $TOPDIR/Java.shtml > $SHTMLFILE
+done
